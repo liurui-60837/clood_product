@@ -6,6 +6,7 @@ import com.imooc.product.VO.ProductVo;
 import com.imooc.product.VO.ResultVO;
 import com.imooc.product.dataobject.ProductCategory;
 import com.imooc.product.dataobject.ProductInfo;
+import com.imooc.product.dto.CartDto;
 import com.imooc.product.service.CategoryService;
 import com.imooc.product.service.ProductService;
 import org.springframework.beans.BeanUtils;
@@ -66,6 +67,19 @@ public class ProductController {
     @PostMapping("/listForOrder")
     public List<ProductInfo> listForOrder(@RequestBody List<String> productIds){
         return productService.findAllById(productIds);
+    }
+
+    /**
+     *
+     * @Description:减库存给订单使用
+     * @Author: liurui
+     * @Date: 2021/3/30 17:22
+     * @param [cartDtoList]
+     * @return void
+     **/
+    @PostMapping("/deleteProductForOrder")
+    public void deleteProductForOrder(@RequestBody List<CartDto> cartDtoList){
+        productService.decreaseStock(cartDtoList);
     }
 }
 
