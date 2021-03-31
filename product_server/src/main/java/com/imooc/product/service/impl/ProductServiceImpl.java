@@ -1,18 +1,20 @@
 package com.imooc.product.service.impl;
 
+import com.imooc.product.common.CartDto;
+import com.imooc.product.common.ProductInfoDTO;
 import com.imooc.product.dataobject.ProductInfo;
-import com.imooc.product.dto.CartDto;
 import com.imooc.product.enums.ProductStatusEnum;
 import com.imooc.product.enums.ResultEnum;
 import com.imooc.product.exception.SellException;
 import com.imooc.product.repository.ProductInfoResitory;
 import com.imooc.product.service.ProductService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -26,8 +28,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductInfo> findAllById(List<String> productIdList) {
-        return productInfoResitory.findProductInfosByProductId(productIdList);
+    public List<ProductInfoDTO> findAllById(List<String> productIdList) {
+        return productInfoResitory.findProductInfosByProductId(productIdList).stream().map(
+                e->{
+                    ProductInfoDTO productInfoDTO = new ProductInfoDTO();
+                    BeanUtils.copyProperties(e,productInfoDTO);
+                    return productInfoDTO;
+                }).collect(Collectors.toList());
     }
 
     /**

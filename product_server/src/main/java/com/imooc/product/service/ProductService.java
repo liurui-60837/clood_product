@@ -1,7 +1,8 @@
 package com.imooc.product.service;
 
+import com.imooc.product.common.CartDto;
+import com.imooc.product.common.ProductInfoDTO;
 import com.imooc.product.dataobject.ProductInfo;
-import com.imooc.product.dto.CartDto;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface ProductService {
     List<ProductInfo> findUpAll();
 
 
-    List<ProductInfo>findAllById(List<String> productIdList);
+    List<ProductInfoDTO>findAllById(List<String> productIdList);
 
     //扣库存
     //减库存

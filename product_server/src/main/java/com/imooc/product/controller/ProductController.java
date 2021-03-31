@@ -4,14 +4,14 @@ import com.imooc.product.Utls.ResultVOUtil;
 import com.imooc.product.VO.ProductInfoVo;
 import com.imooc.product.VO.ProductVo;
 import com.imooc.product.VO.ResultVO;
+import com.imooc.product.common.CartDto;
+import com.imooc.product.common.ProductInfoDTO;
 import com.imooc.product.dataobject.ProductCategory;
 import com.imooc.product.dataobject.ProductInfo;
-import com.imooc.product.dto.CartDto;
 import com.imooc.product.service.CategoryService;
 import com.imooc.product.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class ProductController {
      * @return
      */
     @PostMapping("/listForOrder")
-    public List<ProductInfo> listForOrder(@RequestBody List<String> productIds){
+    public List<ProductInfoDTO> listForOrder(@RequestBody List<String> productIds){
         return productService.findAllById(productIds);
     }
 

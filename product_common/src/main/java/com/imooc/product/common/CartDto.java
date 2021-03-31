@@ -1,4 +1,4 @@
-package com.imooc.product.dto;
+package com.imooc.product.common;
 
 public class CartDto {
     private  String productId;
