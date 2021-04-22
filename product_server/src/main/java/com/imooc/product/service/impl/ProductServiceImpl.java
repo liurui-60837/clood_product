@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductInfoDTO> findAllById(List<String> productIdList) {
-        return productInfoResitory.findProductInfosByProductId(productIdList).stream().map(
+        return productInfoResitory.findProductInfosByProductIdIn(productIdList).stream().map(
                 e->{
                     ProductInfoDTO productInfoDTO = new ProductInfoDTO();
                     BeanUtils.copyProperties(e,productInfoDTO);
